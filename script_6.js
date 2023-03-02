@@ -21,8 +21,8 @@ const acidesAmines = [
   { acideamine: "CGG", proteine: "Arginine" },
   { acideamine: "AGA", proteine: "Arginine" },
   { acideamine: "AGG", proteine: "Arginine" },
-  { acideamine: "UAU", proteine: "TaMaman" },
-  { acideamine: "UAC", proteine: "TaMaman" },
+  { acideamine: "UAU", proteine: "Tyrosine" },
+  { acideamine: "UAC", proteine: "Tyrosine" },
 ] 
 
 function transformARN_1(arn) {
@@ -48,7 +48,7 @@ transformARN_1(arn2);
 
 
 // 2eme méthode plus simple :
-const acidesAmines = {
+const acidesAmines_2 = {
 UCU: 'Sérine', UCC: 'Sérine', UCA: 'Sérine', UCG: 'Sérine',
 AGU: 'Sérine', AGC: 'Sérine', CCC: 'Proline', CCU: 'Proline',
 CCA: 'Proline', CCG: 'Proline', UUA: 'Leucine', UUG: 'Leucine',
@@ -57,3 +57,23 @@ CGC: 'Arginine', CGA: 'Arginine', CGG: 'Arginine',
 AGA: 'Arginine', AGG: 'Arginine', UAU: 'Tyrosine',
 UAC: 'Tyrosine'
 };
+
+function transformARN_2(arn) {
+  let arn_finale = [];
+  arn = arn.match(/.{1,3}/g);
+  arn.forEach(codon => {
+    if (acidesAmines_2[codon]) {
+      codon = acidesAmines_2[codon];
+      arn_finale.push(codon);
+    }
+  })
+  console.log(arn_finale);
+}
+
+let arn1_2 = "CCGUCGUUGCGCUACAGC";
+console.log(arn1 + "correspond à : ")
+transformARN_2(arn1_2);
+
+let arn2_2 = "CCUCGCCGGUACUUCUCG";
+console.log(arn2 + "correspond à : ")
+transformARN_2(arn2_2);
